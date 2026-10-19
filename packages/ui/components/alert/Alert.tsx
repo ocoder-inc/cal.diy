@@ -29,16 +29,18 @@ export interface AlertProps {
   severity: "warning" | "error" | "info" | "neutral";
   CustomIcon?: IconName;
   customIconColor?: string;
+  pulse?: boolean;
 }
 
 export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
-  const { severity, iconClassName, CustomIcon, customIconColor } = props;
+  const { severity, iconClassName, CustomIcon, customIconColor, pulse } = props;
+  const pulseClassName = pulse && "motion-safe:animate-pulse";
 
   return (
     <div data-testid="alert" ref={ref} className={alertStyles({ severity, className: props.className })}>
       <div className="relative flex md:flex-row">
         {CustomIcon ? (
-          <div className="shrink-0">
+          <div className={classNames("shrink-0", pulseClassName)}>
             <Icon
               name={CustomIcon}
               data-testid="custom-icon"
@@ -47,7 +49,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
             />
           </div>
         ) : (
-          <div className={classNames("mr-2 shrink-0", props.title ? "" : "mt-0.5")}>
+          <div className={classNames("mr-2 shrink-0", props.title ? "" : "mt-0.5", pulseClassName)}>
             {severity === "error" && (
               <Icon
                 name="circle-x"

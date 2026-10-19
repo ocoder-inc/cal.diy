@@ -33,4 +33,23 @@ describe("Tests for Alert component", () => {
     render(<Alert severity="neutral" />);
     expect(await screen.findByTestId("neutral")).toBeInTheDocument();
   });
+
+  test("Should pulse the icon when pulse is set", async () => {
+    render(<Alert severity="warning" pulse />);
+    expect((await screen.findByTestId("alert-triangle")).parentElement).toHaveClass(
+      "motion-safe:animate-pulse"
+    );
+  });
+
+  test("Should pulse a custom icon when pulse is set", async () => {
+    render(<Alert severity="info" CustomIcon="bell" pulse />);
+    expect((await screen.findByTestId("custom-icon")).parentElement).toHaveClass("motion-safe:animate-pulse");
+  });
+
+  test("Should not pulse by default", async () => {
+    render(<Alert severity="warning" />);
+    expect((await screen.findByTestId("alert-triangle")).parentElement).not.toHaveClass(
+      "motion-safe:animate-pulse"
+    );
+  });
 });
