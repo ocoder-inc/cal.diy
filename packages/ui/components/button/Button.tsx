@@ -40,7 +40,7 @@ export type ButtonProps = ButtonBaseProps &
   );
 
 export const buttonClasses = cva(
-  "group whitespace-nowrap inline-flex items-center text-sm font-medium relative rounded-[10px] transition cursor-pointer disabled:cursor-not-allowed gap-1",
+  "group whitespace-nowrap inline-flex items-center text-sm font-medium relative rounded-[10px] transition cursor-pointer disabled:cursor-not-allowed gap-1 motion-safe:not-disabled:active:scale-[0.97]",
   {
     variants: {
       variant: {
@@ -67,8 +67,7 @@ export const buttonClasses = cva(
           "shadow-button-solid-brand-default",
           "not-disabled:active:shadow-button-solid-brand-active",
           "not-disabled:hover:shadow-button-solid-brand-hover",
-          "transition-shadow",
-          "transition-transform",
+          "transition-[box-shadow,scale]",
           "duration-100",
         ],
 
@@ -92,7 +91,7 @@ export const buttonClasses = cva(
           "shadow-outline-gray-rested",
           "not-disabled:hover:shadow-outline-gray-hover",
           "not-disabled:active:shadow-outline-gray-active",
-          "transition-shadow",
+          "transition-[box-shadow,scale]",
           "duration-200",
         ],
 
@@ -115,7 +114,7 @@ export const buttonClasses = cva(
 
           // Shadows and effects
           "not-disabled:active:shadow-outline-gray-active",
-          "transition-shadow",
+          "transition-[box-shadow,scale]",
           "duration-200",
         ],
 
@@ -144,7 +143,7 @@ export const buttonClasses = cva(
           "shadow-outline-red-rested",
           "not-disabled:hover:shadow-outline-red-hover",
           "not-disabled:active:shadow-outline-red-active",
-          "transition-shadow",
+          "transition-[box-shadow,scale]",
           "duration-200",
         ],
       },
